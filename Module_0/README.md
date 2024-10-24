@@ -1,9 +1,9 @@
 # Module_0
 ### 1. Практическое задание по вводному уроку "Установка среды разработки PyCharm и Python." 
-main.py
+main.py  
 
 ### 2. Практическое задание по уроку "Базовые структуры данных"
-task1.py
-task2.py
-task3.py
+task1.py  
+task2.py  
+task3.py  
 task4.py
