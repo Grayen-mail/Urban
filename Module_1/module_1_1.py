@@ -1,6 +1,8 @@
-example = 'Abrakadabra'
-print(example[0])
-print(example[-1])
-print(example[len(example)//2:])
-print(example[::-1])
-print(example[::2])
+name = "Sergey"
+print("Name:", name)
+age = 51
+print("Age:", age)
+age = age + 1
+print("New age:", age)
+is_student = True
+print("Is Student:", is_student)
