@@ -1,5 +1,5 @@
 data_structure = [
-  [1, 2, 3],
+  [1, 2, 3.5, True],
   {'a': 4, 'b': 5},
   (6, {'cube': 7, 'drum': 8}),
   "Hello",
@@ -13,6 +13,8 @@ def calculate_structure_sum(data):
         if isinstance(elem, str):
             num += len(elem)
         elif isinstance(elem, int):
+            num += elem
+        elif isinstance(elem, float):
             num += elem
         elif isinstance(elem, dict):
             num += calculate_structure_sum(list(elem.items()))
