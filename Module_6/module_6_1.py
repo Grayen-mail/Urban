@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """ Домашнее задание по теме "Зачем нужно наследование" """
 
 
@@ -19,8 +21,8 @@ class Animal:
         self.alive: bool = True  # Живой
         self.fed: bool = False   # Голодный (True - сытый)
 
-    def eat(self, food: Plant):
-        edible: bool = food.__getattribute__(food.name, )
+    def eat(self, food: object):
+        edible: bool = food.__getattribute__('edible')
         if edible:
             self.fed = True
             print(f'{self.name} съел {food}')
@@ -34,27 +36,20 @@ class Animal:
 
 class Mammal(Animal):
     pass
-    # def __repr__(self):
-    #     return f'{self.name}'
 
 
 class Predator(Animal):
-    pass
-    # def __repr__(self):
-    #     return f'{self.name}'
-
-    # def eat(self, food: Object):
-    #     if isinstance(food, Animal):
-    #         self.fed = True
-    #         print(f'{self.name} съел {food}')
-    #     else:
-    #         print(f'{self.name} не стал есть {food}')
+    def eat(self, food: object):
+        if isinstance(food, Animal):
+            self.fed = True
+            print(f'{self.name} съел {food}')
+        else:
+            self.alive = False
+            print(f'{self.name} не стал есть {food}')
 
 
 class Flower(Plant):
-    def __init__(self, name: str):
-        super().__init__(name)
-        self.edible = True
+    pass
 
 
 class Fruit(Plant):
@@ -78,3 +73,11 @@ if __name__ == '__main__':
     a2.eat(p2)
     print(a1.alive)
     print(a2.fed)
+
+    # added
+    a3 = Predator('Гиена')
+    print(f'\nНовый хищник: {a3}')
+    a3.eat(a2)
+    print(a3.alive)
+    print(a3.fed)
+    print(f'Хищник {a3} съел {a2} и насытился')
