@@ -13,7 +13,7 @@ class User:
         self.age = age
 
     def __repr__(self) -> str:
-        """ Представление класса в виде строки с именем пользователя"""
+        """ Представление класса в виде строки """
         return f'User("{self.nickname}", "{self.password}", {self.age})'
 
     def __str__(self) -> str:
@@ -45,7 +45,7 @@ class Video:
         return f'{self.title}'
 
     def __repr__(self):
-        """ Представление класса в виде строки с названием видео"""
+        """ Представление класса в виде строки """
         return f'Video("{self.title}", {self.duration}, {self.time_now}, {self.adult_mode})'
 
     def __eq__(self, other):
