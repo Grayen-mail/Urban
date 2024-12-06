@@ -8,11 +8,15 @@ class User:
     """ Класс User """
     def __init__(self, nickname: str, password: str, age: int) -> None:
         """В экземпляре храним имя, хеш пароля и возраст"""
-        self.nickname = nickname
+        self.nickname: str = nickname
         self.password = hash(password)
         self.age = age
 
     def __repr__(self) -> str:
+        """ Представление класса в виде строки с именем пользователя"""
+        return f'User("{self.nickname}", "{self.password}", {self.age})'
+
+    def __str__(self) -> str:
         """ Представление класса в виде строки с именем пользователя"""
         return self.nickname
 
@@ -36,9 +40,13 @@ class Video:
         self.time_now = time_now
         self.adult_mode = adult_mode
 
+    def __str__(self):
+        """ Представление класса в виде строки с названием видео"""
+        return f'{self.title}'
+
     def __repr__(self):
         """ Представление класса в виде строки с названием видео"""
-        return self.title
+        return f'Video("{self.title}", {self.duration}, {self.time_now}, {self.adult_mode})'
 
     def __eq__(self, other):
         """ Проверяем только объекты класса и строковое представление"""
@@ -63,7 +71,7 @@ class UrTube:
     def log_in(self, nickname: str, password: str) -> bool:
         """ Вход по имени и паролю"""
         if nickname in self.users:
-            user = self.users[self.users.index(nickname)]
+            user = self.users[self.users.index(eval(repr(nickname)))]
             if user.password == hash(password):
                 self.current_user = user
                 # print(f'Вошел пользователь с именем {nickname}')
@@ -106,17 +114,17 @@ class UrTube:
         """ Добавляем видео, если название больше 3 знаков
         и продолжительность больше 0"""
         for video in video_tuple:
-            if (video not in self. videos and
+            if (video not in self.videos and
                     len(video.title) > 3 and video.duration > 0):
                 self.videos.append(video)
 
-    def get_videos(self, search_string: str) -> list[Video]:
+    def get_videos(self, search_string: str) -> list[str]:
         """ Поиск видео по частичному названию без учёта регистра,
             возвращает список найденных видео"""
         ret_value = []
         for video in self.videos:
             if search_string.lower() in video.title.lower():
-                ret_value.append(video)
+                ret_value.append(video.title)
         return ret_value
 
     def watch_video(self, video_name: str) -> None:
@@ -126,7 +134,7 @@ class UrTube:
             print('Войдите в аккаунт, чтобы смотреть видео')
             return
         if video_name in self.videos:
-            list_index = self.videos.index(video_name)
+            list_index = self.videos.index(eval(repr(video_name)))
             if self.videos[list_index].adult_mode and self.current_user.age < 18:
                 print('Вам нет 18 лет, пожалуйста покиньте страницу')
             else:
