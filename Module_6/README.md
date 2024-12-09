@@ -6,3 +6,12 @@ module_6_1.py
 module_6_2.py
 ### 30. Домашнее задание по теме "Множественное наследование"
 module_6_3.py
+### 30. Практика
+Practice/  
+        ball.png  
+    bamper.png  
+    game.py  
+    README.md  
+    requirment.txt  
+### 31. Дополнительное практическое задание по модулю 6
+module_6_add.py
