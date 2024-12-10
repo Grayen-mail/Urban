@@ -18,10 +18,11 @@ class Animal:
         x, y, z = self.speed * dx, self.speed * dy, self.speed * dz
         self._cords[1] += y
         self._cords[0] += x
-        self._cords[2] += z
         if self._cords[2] + z < 0:
             print("It's too deep, i can't dive :(")
             self._cords[2] = 0
+        else:
+            self._cords[2] += z
 
     def get_cords(self):
         print(f'X: {self._cords[0]}, Y: {self._cords[1]}, Z: {self._cords[2]}')
