@@ -16,14 +16,15 @@ def personal_sum(numbers):
 
 
 def calculate_average(numbers):
+    if not isinstance(numbers, (str, list, tuple, set, dict)):
+        print("В numbers записан некорректный тип данных")
+        return None
+    if isinstance(numbers, dict):
+        numbers = list(numbers.values())
     try:
-        if not isinstance(numbers, (str, list, tuple, set, dict)):
-            print("В numbers записан некорректный тип данных")
-            return None
-        if isinstance(numbers, dict):
-            numbers = list(numbers.values())
         sum_result, incorrect_data = personal_sum(numbers)
-        return sum_result / len([num for num in numbers if isinstance(num, (int, float))])
+        # return sum_result / len([num for num in numbers if isinstance(num, (int, float))])
+        return sum_result / (len(numbers) - incorrect_data)
     except ZeroDivisionError:
         return 0
 
@@ -33,5 +34,7 @@ print(f'Результат 1: {calculate_average("1, 2, 3")}') # Строка п
 print(f'Результат 2: {calculate_average([1, "Строка", 3, "Ещё Строка"])}') # Учитываются только 1 и 3
 print(f'Результат 3: {calculate_average(567)}') # Передана не коллекция
 print(f'Результат 4: {calculate_average([42, 15, 36, 13])}') # Всё должно работать
+print()
 print(f'Результат 5: {calculate_average({42, 15, 36, 13})}')
-print(f"Результат 6: {calculate_average({'one': 42, 'two': 15, 'three': 36, 'four': 13})}")
+print(f"Результат 6: {calculate_average({'one': 42, 'two': 15, 'three': 36, 'four': 13, 'five': 'text'})}")
+print(f'Результат 7: {calculate_average([])}')
